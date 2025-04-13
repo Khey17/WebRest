@@ -20,5 +20,6 @@ namespace WebRestAPI.Code;
          CreateMap<OrdersLine, OrdersLine>();
          CreateMap<Product, Product>();
          CreateMap<ProductPrice, ProductPrice>();
+         CreateMap<ProductStatus, ProductStatus>();
      }
  }
