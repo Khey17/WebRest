@@ -23,6 +23,15 @@ This project shows how to run Oracle Database inside Kubernetes using Docker and
   └── oracle-deployment.yaml
 ```
 
+For MacOS, use this link [compatible with ARM64](https://hub.docker.com/r/gvenzl/oracle-xe)
+```bash
+docker pull gvenzl/oracle-xe
+```
+To load the image:
+```bash
+minikube load gvenzl/oracle-xe
+```
+
 ---
 
 ## Pull the Oracle XE Docker Image
