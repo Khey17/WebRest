@@ -29,7 +29,7 @@ docker pull gvenzl/oracle-xe
 ```
 To load the image:
 ```bash
-minikube load gvenzl/oracle-xe
+minikube image load gvenzl/oracle-xe
 ```
 
 ---
