@@ -121,7 +121,7 @@ Then reconnect using the same commands.
 
  # Progress
 ``` Powershell
- bash-4.2$ sqlplus UD_ASHOKK/XXXX@98.84.13.6:1521/FREEPDB1
+ bash-4.2$ sqlplus UD_ASHOKK/XXXX@IPAddress:1521/FREEPDB1
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Tue Apr 1 21:49:12 2025
 Version 21.3.0.0.0
@@ -136,4 +136,61 @@ Version 23.4.0.24.05
 ```
 ---
 
+Exit to bash or powershell and then:
+## Run SQL Files Inside the Oracle Pod
+
+### 1. Copy SQL file to pod
+
+```bash
+kubectl cp ./PS1.sql <pod-name>:/tmp/PS1.sql
+```
+```bash
+kubectl cp ./PS1.sql <pod-name>:/tmp/PS1.sql
+```
+and so forth
+
+followed by
+```bash
+kubectl exec -it <pod-name> -- bash
+```
+
+## Execute the SQL file inside the pod
+```bash
+sqlplus sqlplus UD_ASHOKK/XXXX@IPAddress:1521/FREEPDB1 @/tmp/PS1.sql
+```
+Followed by
+```SQL
+@/tmp/PS2.sql
+```
+
+Sample Output after running the schemas inside the pod:
+```SQL
+SQL> select table_name from user_tables;
+```
+```SQL
+TABLE_NAME
+--------------------------------------------------------------------------------
+CUSTOMER
+ORDERS
+GENDER
+ORDER_STATUS
+ADDRESS
+ADDRESS_TYPE
+CUSTOMER_ADDRESS
+INVENTORY
+INVENTORY_STATE
+INVENTORY_STATUS
+ORDERS_LINE
+
+TABLE_NAME
+--------------------------------------------------------------------------------
+ORDER_STATE
+PRODUCT
+PRODUCT_PRICE
+PRODUCT_STATUS
+
+15 rows selected.
+
+SQL> 
+```
 
