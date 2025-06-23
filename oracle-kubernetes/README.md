@@ -119,6 +119,20 @@ Then reconnect using the same commands.
 
 ---
 
+## Copying .sql files into the pod
+```bash
+kubectl cp ./PS1.sql oracle-db-<pod-name>:/tmp/PS1.sql
+kubectl cp ./PS2.sql oracle-db-<pod-name>:/tmp/PS2.sql
+kubectl cp ./PS2.sql oracle-db-<pod-name>:/tmp/PS3.sql
+```
+
+## Runing the scripts in SQL*Plus
+```
+sqlplus system/Oracle2025@//localhost:1521/FREEPDB1 @/tmp/PS1.sql
+sqlplus system/Oracle2025@//localhost:1521/FREEPDB1 @/tmp/PS2.sql
+sqlplus system/Oracle2025@//localhost:1521/FREEPDB1 @/tmp/PS3.sql
+```
+
  # Progress
 ``` Powershell
  bash-4.2$ sqlplus UD_ASHOKK/XXXX@IPAddress:1521/FREEPDB1
