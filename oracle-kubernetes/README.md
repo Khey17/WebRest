@@ -18,8 +18,8 @@ This project shows how to run Oracle Database inside Kubernetes using Docker and
 
 ```bash
 /oracle-k8s
-  ├── PS1.sql   # Schema creation
-  ├── PS2.sql   # Data + constraints (optional)
+  ├── FILE_1.sql   # Schema creation
+  ├── FILE_2.sql   # Data + constraints (optional)
   └── oracle-deployment.yaml
 ```
 
@@ -80,7 +80,7 @@ kubectl exec -it oracle-db-XXXXX (podname) -- bash
 ## Inside Bash
 
 ```bash
-sqlplus Username/YourPassword@IPAddress/ServiceName (for example, FREEPDB1 in our case)
+sqlplus Username/YourPassword@IPAddress/ServiceName (for example, SERVICE_NAME in our case)
 ```
 
 ---
@@ -121,21 +121,21 @@ Then reconnect using the same commands.
 
 ## Copying .sql files into the pod
 ```bash
-kubectl cp ./PS1.sql oracle-db-<pod-name>:/tmp/PS1.sql
-kubectl cp ./PS2.sql oracle-db-<pod-name>:/tmp/PS2.sql
-kubectl cp ./PS2.sql oracle-db-<pod-name>:/tmp/PS3.sql
+kubectl cp ./FILE_1.sql oracle-db-<pod-name>:/tmp/FILE_1.sql
+kubectl cp ./FILE_2.sql oracle-db-<pod-name>:/tmp/FILE_2.sql
+kubectl cp ./FILE_2.sql oracle-db-<pod-name>:/tmp/FILE_3.sql
 ```
 
 ## Runing the scripts in SQL*Plus
 ```
-sqlplus system/Oracle2025@//localhost:1521/FREEPDB1 @/tmp/PS1.sql
-sqlplus system/Oracle2025@//localhost:1521/FREEPDB1 @/tmp/PS2.sql
-sqlplus system/Oracle2025@//localhost:1521/FREEPDB1 @/tmp/PS3.sql
+sqlplus system/Oracle2025@//localhost:PORT_NUMBER/SERVICE_NAME @/tmp/FILE_1.sql
+sqlplus system/Oracle2025@//localhost:PORT_NUMBER/SERVICE_NAME @/tmp/FILE_2.sql
+sqlplus system/Oracle2025@//localhost:PORT_NUMBER/SERVICE_NAME @/tmp/FILE_3.sql
 ```
 
  # Progress
 ``` Powershell
- bash-4.2$ sqlplus UD_ASHOKK/XXXX@IPAddress:1521/FREEPDB1
+ bash-4.2$ sqlplus USERNAME/XXXX@IPAddress:PORT_NUMBER/SERVICE_NAME
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Tue Apr 1 21:49:12 2025
 Version 21.3.0.0.0
@@ -156,10 +156,10 @@ Exit to bash or powershell and then:
 ### 1. Copy SQL file to pod
 
 ```bash
-kubectl cp ./PS1.sql <pod-name>:/tmp/PS1.sql
+kubectl cp ./FILE_1.sql <pod-name>:/tmp/FILE_1.sql
 ```
 ```bash
-kubectl cp ./PS1.sql <pod-name>:/tmp/PS1.sql
+kubectl cp ./FILE_1.sql <pod-name>:/tmp/FILE_1.sql
 ```
 and so forth
 
@@ -170,11 +170,11 @@ kubectl exec -it <pod-name> -- bash
 
 ## Execute the SQL file inside the pod
 ```bash
-sqlplus sqlplus UD_ASHOKK/XXXX@IPAddress:1521/FREEPDB1 @/tmp/PS1.sql
+sqlplus sqlplus UD_ASHOKK/XXXX@IPAddress:PORT_NUMBER/SERVICE_NAME @/tmp/FILE_1.sql
 ```
 Followed by
 ```SQL
-@/tmp/PS2.sql
+@/tmp/FILE_2.sql
 ```
 
 Sample Output after running the schemas inside the pod:
