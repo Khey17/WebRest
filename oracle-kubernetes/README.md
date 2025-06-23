@@ -1,10 +1,10 @@
-# Oracle + Kubernetes + Docker Project (Guide)
+# Oracle + Kubernetes + Docker Project
 
-This project shows how to run Oracle Database inside Kubernetes using Docker and connect to it like a normal Oracle database. You can upload SQL files, create users, and everything stays running even if you restart. No need to recreate it all every time.
+This project demonstrates how to run an Oracle Database inside Kubernetes using Docker and connect to it as a normal Oracle database. You can upload SQL files, create users, and everything stays running even if you restart. No need to recreate it all every time.
 
 ---
 
-## Requirements/Dependancies
+## Requirements/Dependencies
 
 - **Docker Desktop** (with WSL2 backend enabled)
 - **Minikube** (Docker driver)
@@ -150,10 +150,10 @@ Version 23.4.0.24.05
 ```
 ---
 
-Exit to bash or powershell and then:
+Exit to bash or PowerShell and then:
 ## Run SQL Files Inside the Oracle Pod
 
-### 1. Copy SQL file to pod
+### 1. Copy the SQL file to the pod
 
 ```bash
 kubectl cp ./FILE_1.sql <pod-name>:/tmp/FILE_1.sql
@@ -170,7 +170,7 @@ kubectl exec -it <pod-name> -- bash
 
 ## Execute the SQL file inside the pod
 ```bash
-sqlplus sqlplus UD_ASHOKK/XXXX@IPAddress:PORT_NUMBER/SERVICE_NAME @/tmp/FILE_1.sql
+sqlplus sqlplus USERNAME/XXXX@IPAddress:PORT_NUMBER/SERVICE_NAME @/tmp/FILE_1.sql
 ```
 Followed by
 ```SQL
